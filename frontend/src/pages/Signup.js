@@ -3,7 +3,7 @@
 // ==========================
 
 import { useState } from "react";
-import axios from "axios";
+import API from "./apiClient";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -23,7 +23,7 @@ function Signup() {
     }
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/signUp", {
+      await API.post("/api/auth/signUp", {
         name,
         email,
         password,
