@@ -14,11 +14,11 @@ function Interview() {
   const interviewId = localStorage.getItem("interviewId");
   const topic = localStorage.getItem("topic");
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/login");
-    const stored = JSON.parse(localStorage.getItem("questions"));
-    if (stored) setQuestions(stored);
-  }, []);
+ useEffect(() => {
+  if (!localStorage.getItem("token")) navigate("/login");
+  const stored = JSON.parse(localStorage.getItem("questions"));
+  if (stored) setQuestions(stored);
+}, [navigate]);
 
   useEffect(() => {
     if (timeLeft === 0) {

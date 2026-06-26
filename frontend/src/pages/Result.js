@@ -10,14 +10,14 @@ function Result() {
   const navigate = useNavigate();
   const interviewId = localStorage.getItem("interviewId");
 
-  useEffect(() => {
+useEffect(() => {
   if (!localStorage.getItem("token")) navigate("/login");
-}, []);
+}, [navigate]);
 
-  useEffect(() => {
-    fetchResult();
-    generateFeedback();
-  }, []);
+useEffect(() => {
+  fetchResult();
+  generateFeedback();
+}, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
  const fetchResult = async () => {
   try {
