@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Cell, LineChart, Line, Area, AreaChart } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import { useEffect, useState } from "react";
 import API from "./apiClient";
 import { useNavigate } from "react-router-dom";
@@ -19,10 +19,10 @@ function Analytics() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/login");
-    fetchHistory();
-  }, []);
+ useEffect(() => {
+  if (!localStorage.getItem("token")) navigate("/login");
+  fetchHistory();
+}, [navigate]);
 
   const fetchHistory = async () => {
     try {

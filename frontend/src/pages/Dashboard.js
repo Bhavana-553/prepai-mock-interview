@@ -10,9 +10,9 @@ function Dashboard() {
   const [aiError, setAiError] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/login");
-    fetchHistory();
-  }, []);
+  if (!localStorage.getItem("token")) navigate("/login");
+  fetchHistory();
+}, [navigate]);
 
   const fetchHistory = async () => {
     try {
