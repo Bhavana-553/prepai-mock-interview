@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "./apiClient";
 import { useNavigate } from "react-router-dom";
 
 function Result() {
@@ -22,7 +22,7 @@ function Result() {
  const fetchResult = async () => {
   try {
     const token = localStorage.getItem("token");
-    const res = await axios.get(`http://localhost:5000/api/interview/result/${interviewId}`,
+   const res = await API.get(`/api/interview/result/${interviewId}`,
       { headers: { Authorization: `Bearer ${token}` } });
     setResult(res.data);
     setResponses(res.data.responses || []);
@@ -33,7 +33,7 @@ function Result() {
     try {
       const token = localStorage.getItem("token");
       const answers = JSON.parse(localStorage.getItem("answers"));
-      const res = await axios.post("http://localhost:5000/api/interview/ai-feedback",
+      const res = await API.post("/api/interview/ai-feedback",
         { answers }, { headers: { Authorization: `Bearer ${token}` } });
       setFeedback(res.data.feedback);
     } catch (err) { console.log(err); }

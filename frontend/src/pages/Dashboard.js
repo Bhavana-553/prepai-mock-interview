@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "./apiClient";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
@@ -17,7 +17,7 @@ function Dashboard() {
   const fetchHistory = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/interview/history", {
+      const res = await API.get("/api/interview/history", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setHistory(res.data);
@@ -30,11 +30,11 @@ function Dashboard() {
     setAiError(false);
     try {
       const token = localStorage.getItem("token");
-      const questionRes = await axios.post("http://localhost:5000/api/interview/generate-questions",
+     const questionRes = await API.post("/api/interview/generate-questions",
         { topic }, { headers: { Authorization: `Bearer ${token}` } });
       localStorage.setItem("questions", JSON.stringify(questionRes.data.questions));
       localStorage.setItem("topic", topic);
-      const res = await axios.post("http://localhost:5000/api/interview/start", {},
+      const res = await API.post("/api/interview/start", {},
         { headers: { Authorization: `Bearer ${token}` } });
       localStorage.setItem("interviewId", res.data.id);
       navigate("/interview");

@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Cell, LineChart, Line, Area, AreaChart } from "recharts";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "./apiClient";
 import { useNavigate } from "react-router-dom";
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -27,7 +27,7 @@ function Analytics() {
   const fetchHistory = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/interview/history",
+      const res = await API.get("/api/interview/history",
         { headers: { Authorization: `Bearer ${token}` } });
       const formatted = res.data.map((item, i) => ({
         name: `S${i + 1}`,

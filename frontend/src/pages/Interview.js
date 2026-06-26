@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "./apiClient";
 import { useNavigate } from "react-router-dom";
 
 function Interview() {
@@ -26,7 +26,7 @@ function Interview() {
         try {
           const token = localStorage.getItem("token");
           if (answer.trim()) {
-            await axios.post("http://localhost:5000/api/interview/submit",
+            await API.post("/api/interview/submit",
               { interviewId, question: questions[currentIndex], answer },
               { headers: { Authorization: `Bearer ${token}` } });
           }
@@ -66,7 +66,7 @@ function Interview() {
     setSubmitting(true);
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/interview/submit",
+      await API.post("/api/interview/submit",
         { interviewId, question: questions[currentIndex], answer },
         { headers: { Authorization: `Bearer ${token}` } });
       const updated = [...allAnswers, answer];
