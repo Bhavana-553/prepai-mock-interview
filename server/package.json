@@ -5,6 +5,7 @@
   "main": "App.js",
   "type": "module",
   "scripts": {
+    "start": "node App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,7 +21,6 @@
     "google-auth-library": "^10.7.0",
     "groq-sdk": "^1.2.1",
     "jsonwebtoken": "^9.0.3",
-    "node": "^24.15.0",
     "pg": "^8.21.0"
   }
 }
