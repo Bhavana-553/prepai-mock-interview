@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import Groq from "groq-sdk";
 
-const groq = new Groq({ apiKey: process.env.GEMINI_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export const generateContent = async (prompt) => {
     const response = await groq.chat.completions.create({
